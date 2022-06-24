@@ -1,90 +1,116 @@
+import java.io.IOException;
+
 public class Main {
+    public static final int TAM = 1250836; // Variavél constante do tamanho 
+                                          //do arquivo principal "LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv"
     public static void main(String[] args) throws Exception {
 
-        String path_main = "../LostAngeles/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
-        String path_stations = "../LostAngeles/stations.csv";
-
-        String[][] MainArchive = new String[1250836][];
+        // Define as variavéis com os nomes dos arquivos
+        String path_main = "../Lost-Angeles-Metro-Bike-Share/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
+        String path_stations = "../Lost-Angeles-Metro-Bike-Share/stations.csv";
+        
+        // Cria matrizes para receber os dados das linhas e colunas dos arquivos especificados
+        String[][] MainArchive = new String[TAM][];
         String[][] StationsId = new String[349][];
 
-        System.out.println("Iniciou");
+        System.out.printf("***************** Programa Iniciado *****************\n");
+        System.out.printf("*****************  Seja Bem Vindo!  *****************\n");
+        System.out.printf("*                                                   *\n");
+        System.out.printf("* Em instantes os seguintes arquivos serão gerados: *\n");
+        System.out.printf("* 1) LAMetroTrips.csv                               *\n");
+        System.out.printf("* 2) LAMetroTrips_F1.csv                            *\n");
+        System.out.printf("* 3) LAMetroTrips_F2.csv                            *\n");
+        System.out.printf("*                                                   *\n");
+        System.out.printf("*****************************************************\n");
 
-        //carrega arquivos nas matrizes MainArchive e StationsID
+        // Carrega arquivos nas matrizes MainArchive e StationsID
         ExecutaCsv.LerCsv(path_main, MainArchive);
-        //System.out.println("Leu o primeiro");
         ExecutaCsv.LerCsv(path_stations, StationsId);
-        //System.out.println("Leu o segundo");
         
-        //int PasadenaTravels = 0;
-
         // Primeira transformação
-        for (int j = 1; j < MainArchive.length; j++) {
+        System.out.printf("\nGerando LAMetroTrips.csv...");
+        // Compara os dados da coluna 'station_id' do 'stations.csv' com a do arquivo 'LA_Metro_Bike...'
+        for (int j = 1; j < TAM; j++) {
             for (int k = 1; k < StationsId.length-1; k++) {
-                if(MainArchive[j][9].equals(StationsId[k][0])){ 
-                    MainArchive[j][9] = StationsId[k][1];
+                if(MainArchive[j][9].equals(StationsId[k][0])){ // Compara a coluna 'start_station' 
+                    MainArchive[j][9] = StationsId[k][1]; // Efetua a subtituição
                 }
-                if(MainArchive[j][10].equals(StationsId[k][0])){ 
-                    MainArchive[j][10] = StationsId[k][1];
+                if(MainArchive[j][10].equals(StationsId[k][0])){ // Compara a coluna 'end_station' 
+                    MainArchive[j][10] = StationsId[k][1]; // Efetua a subtituição
                 }
             }
         }
-        // Escrever a matriz em uma linha
-        String[] linhas = new String[1250836];
-        //System.out.println(MainArchive.length);
-        for (int i = 0; i < MainArchive.length; i++){
-            linhas[i] = "";
-            for (int j = 0; j < 16; j++){
-                if (j < 15) {
-                    linhas[i] += MainArchive[i][j] + ",";
-                    //System.out.println(linhas[i] +" | "+MainArchive[i][j]);
-                }
-                else linhas[i] += MainArchive[i][j];
-            }            
-            //System.out.println(linhas[i]);
-        }
-        String primeiraTransf = ExecutaCsv.VerificarExistencia("LAMetroTrips");
-        ExecutaCsv.Escrever(primeiraTransf, linhas);
+        // Chama o método 'AdicionaVirgula' para concatenar os elementos das colunas linha a linha e envia o nome do arquivo a ser gereado
+        AdicionaVirgula(MainArchive,"LAMetroTrips"); 
+        System.out.printf("Arquivo Gerado com Sucesso!!\n");
 
         // Segunda transformação
-        for (int j = 1; j < MainArchive.length; j++) {
+        System.out.printf("\nGerando LAMetroTrips_F1.csv...");
+        // Cria variavel para receber a posição da linha que contém viagens de Pasadena
+        int[] listaPosicao = new int[TAM];
+        // Contador para controlar a posição dos elementos da lista
+        int contador = 0; 
+
+        for (int j = 1; j < TAM; j++) {
             for (int k = 1; k < StationsId.length-1; k++) {
+                // Compara a coluna 'start_station' e 'end_station' com as estações em 'stations.csv', e verifica se são de Pasadena
                 if(MainArchive[j][9].equals(StationsId[k][1]) && StationsId[k][3].equals("Pasadena") 
                 || MainArchive[j][10].equals(StationsId[k][1]) && StationsId[k][3].equals("Pasadena")){ 
-                    //falta colocar as viagens que passam por pasadena em um array/matriz tu quem sabe
-                    //depois disso criar o terceiro arquivo e terceira transformação
-                    
+                    listaPosicao[contador] = j; // Adiona o valor da linha a 'listaPosicao'
+                    contador++; // Soma o contador
                 }
             }
         }
+        // Chama a função 'FiltrarCSV' contida no arquivo 'Executa.Csv' concatenando os elementos com virgula os separando
+        ExecutaCsv.FiltrarCSV(MainArchive, "LAMetroTrips_F1", listaPosicao, contador);
+        System.out.printf("Arquivo Gerado com Sucesso!!\n");
 
-        // Terceira transformação
-        
-        System.out.println("Terceira transformação");
-        String terceiraTransf = ExecutaCsv.VerificarExistencia("LAMetroTrips_F2");
-        // Calcular media da duração
+        // Terceira transformação       
+        System.out.printf("\nGerando LAMetroTrips_F1.csv...");
+        // Calcula media da duração dos passeios contidos em 'LAMetroTrips.csv'
         float media = 0;
-        for (int i = 1; i < MainArchive.length; i++) {
+        // Soma todos os valores da coluna 'duration'
+        for (int i = 1; i < TAM; i++) {
             media += Float.parseFloat(MainArchive[i][1]);
         }
-        media = media/MainArchive.length;
-        linhas = new String[1250836];
-        //filtrar lista de acordo com aduração
-        for (int i = 1; i < MainArchive.length; i++) {
+        // Divide pelo total de elementos e obtém-se a média geral de tempo dos passeios
+        media = media/TAM;
+        // Zera a variavel 'listaPosicao' e 'contador'
+        listaPosicao = new int[TAM];
+        contador = 0;
+
+        // Filtrar os passeios com tempo maior que a média geral
+        for (int i = 1; i < TAM; i++) {
+            // Verifica se os valores são maior que a média
             if(Integer.parseInt(MainArchive[i][1]) > media){
-                for (int n = 0; n < MainArchive.length;n++){
-                    linhas[n] = "";
-                    for (int j = 0; j < 16; j++){
-                        if (j < 15) {
-                            linhas[n] += MainArchive[n][j] + ",";
-                        }   
-                        else linhas[n] += MainArchive[n][j];
-                    }            
-                }
+                listaPosicao[contador] = i; // Adiona o valor da linha a 'listaPosicao'
+                contador++;
             }
         }
+        // Chama a função 'FiltrarCSV' contida no arquivo 'Executa.Csv' concatenando os elementos com virgula os separando
+        ExecutaCsv.FiltrarCSV(MainArchive, "LAMetroTrips_F2", listaPosicao, contador);
+        System.out.printf("Arquivo Gerado com Sucesso!!\n");
 
-        ExecutaCsv.Escrever(terceiraTransf, linhas);
-        //System.out.println("media =" + media);
-        
+        System.out.printf("\n*****************************************************\n");
+        System.out.printf("********** Programa executado com sucesso. **********\n");
+        System.out.printf("*****************************************************\n");
+    }
+    public static void AdicionaVirgula(String[][] MatrizString, String archiveName) throws IOException{
+        // Inicializa a variavel que vai conter e fomrar cada linha do arquivo
+        String[] linhas = new String[TAM];
+
+        for (int i = 0; i < TAM; i++){
+            linhas[i] = ""; // Inicia cada linha com vazio
+            for (int j = 0; j < 16; j++){
+                if (j < 15) { // Verifica se é ou não o último elemento
+                    linhas[i] += MatrizString[i][j] + ","; // Concatena cada variavel com uma virgula as separando
+                }
+                else linhas[i] += MatrizString[i][j]; // Concatena o último elemento da linha 
+            }            
+        }
+        // Chama a função contida em 'ExecutaCsv' para criar o arquivo especificado e caso exista o apaga
+        String transformar = ExecutaCsv.VerificarExistencia(archiveName);
+        // Chama a função contida em 'ExecutaCsv' e eEscreve no arquivo especificado o que está contido na variavel 'linhas'
+        ExecutaCsv.Escrever(transformar, linhas);
     }
 }
