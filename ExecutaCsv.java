@@ -47,10 +47,9 @@ public class ExecutaCsv{
         for (int i = 0; i < linhas.length; i++){
             //Escreve o conteúdo no arquivo
             bw.write(linhas[i]);
-            if (i < linhas.length-1){
-                // Adiciona a quebra de linha no arquivo
-                bw.newLine();
-            }
+            // Adiciona a quebra de linha no arquivo
+            bw.newLine();
+            
         }
         // Fecha os recursos
         bw.close();

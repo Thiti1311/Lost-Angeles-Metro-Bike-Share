@@ -5,14 +5,6 @@ public class Main {
                                           //do arquivo principal "LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv"
     public static void main(String[] args) throws Exception {
 
-        // Define as variavéis com os nomes dos arquivos
-        String path_main = "../Lost-Angeles-Metro-Bike-Share/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
-        String path_stations = "../Lost-Angeles-Metro-Bike-Share/stations.csv";
-        
-        // Cria matrizes para receber os dados das linhas e colunas dos arquivos especificados
-        String[][] MainArchive = new String[TAM][];
-        String[][] StationsId = new String[349][];
-
         System.out.printf("***************** Programa Iniciado *****************\n");
         System.out.printf("*****************  Seja Bem Vindo!  *****************\n");
         System.out.printf("*                                                   *\n");
@@ -23,10 +15,18 @@ public class Main {
         System.out.printf("*                                                   *\n");
         System.out.printf("*****************************************************\n");
 
+        // Define as variavéis com os nomes dos arquivos
+        String path_main = "../Lost-Angeles-Metro-Bike-Share/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
+        String path_stations = "../Lost-Angeles-Metro-Bike-Share/stations.csv";
+        
+        // Cria matrizes para receber os dados das linhas e colunas dos arquivos especificados
+        String[][] MainArchive = new String[TAM][];
+        String[][] StationsId = new String[349][];
+
         // Carrega arquivos nas matrizes MainArchive e StationsID
         ExecutaCsv.LerCsv(path_main, MainArchive);
         ExecutaCsv.LerCsv(path_stations, StationsId);
-        
+       /*   
         // Primeira transformação
         System.out.printf("\nGerando LAMetroTrips.csv...");
         // Compara os dados da coluna 'station_id' do 'stations.csv' com a do arquivo 'LA_Metro_Bike...'
@@ -42,8 +42,9 @@ public class Main {
         }
         // Chama o método 'AdicionaVirgula' para concatenar os elementos das colunas linha a linha e envia o nome do arquivo a ser gereado
         AdicionaVirgula(MainArchive,"LAMetroTrips"); 
-        System.out.printf("Arquivo Gerado com Sucesso!!\n");
-
+        System.out.printf("Arquivo Gerado com Sucesso!!\n");*/
+        Ordenacao_3.Star_time(MainArchive);
+/*
         // Segunda transformação
         System.out.printf("\nGerando LAMetroTrips_F1.csv...");
         // Cria variavel para receber a posição da linha que contém viagens de Pasadena
@@ -93,7 +94,7 @@ public class Main {
 
         System.out.printf("\n*****************************************************\n");
         System.out.printf("********** Programa executado com sucesso. **********\n");
-        System.out.printf("*****************************************************\n");
+        System.out.printf("*****************************************************\n");*/
     }
     public static void AdicionaVirgula(String[][] MatrizString, String archiveName) throws IOException{
         // Inicializa a variavel que vai conter e fomrar cada linha do arquivo
