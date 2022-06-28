@@ -7,17 +7,24 @@ public class Ordenacao_3 {
     public static void Star_time(String[][] LAMetroTrips) throws IOException{
         String[] data = new String[TAM];
         int[] dataInt = new int[TAM];
-        int[] position = new int[TAM];
+        String[][] recebeVetor = new String[TAM][];
+
         for(int i = 1, j = 0; i < TAM; i++, j++){
             data[j] = LAMetroTrips[i][2];
             data[j] = transformarData(data[j]);
             dataInt[j] = Integer.parseInt(data[j]);
-            position[i] = i;
         }
-        String[][] LAMetroTrips_BubbleSort = BubbleSort(LAMetroTrips, dataInt);
-        Main.AdicionaVirgula(LAMetroTrips_BubbleSort, "LAMetroTrips_start_time_bubbleSort_medioCaso.csv");
-        
-        //dataInt = InsertionSort(dataInt);
+
+        //recebeVetor = InsertionSort(LAMetroTrips, dataInt);
+        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_medioCaso.csv");;
+        //recebeVetor = InsertionSort(recebeVetor, dataInt);
+        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_melhorCaso.csv");
+        recebeVetor = PiorCaso(LAMetroTrips, dataInt);
+        for (int i = 0; i < TAM; i++){
+            System.out.println(recebeVetor[i]);
+        }
+        //recebeVetor = InsertionSort(recebeVetor, dataInt);
+        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_piorCaso.csv");
 
         
     }
@@ -32,11 +39,11 @@ public class Ordenacao_3 {
 
         return newData;
     }
-    public static String[][] BubbleSort(String[][] table, int[] vetor){ 
+    public static String[][] PiorCaso(String[][] table, int[] vetor){ 
 
         for(int i = 1; i < vetor.length - 1; i++){
             for (int j = 1; j < vetor.length - 1 - i; j++){
-                if (vetor[j] > vetor[j + 1]){
+                if (vetor[j] < vetor[j + 1]){
                     int aux = vetor[j];
                     vetor[j] = vetor[j + 1];
                     vetor[j + 1] = aux;
@@ -48,19 +55,22 @@ public class Ordenacao_3 {
             }
         }
 
-        return table;
+        return table;  
     }
-    public static int[] InsertionSort(int[] vetor) {
+    public static String[][] InsertionSort(String[][] table, int[] vetor) {
         int key;
     
         for (int j = 1, i; j < vetor.length; j++){
             key = vetor[j];
             for ( i = j - 1; (i >= 0) && (vetor[i] > key); i--){
                 vetor[i + 1] = vetor[i];
+
+
             }
             vetor[i + 1] = key;
         }
-        return vetor;
+        return table;
     }
+    //public static int[]
 
 }
