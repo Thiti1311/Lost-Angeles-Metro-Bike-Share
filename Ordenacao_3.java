@@ -4,31 +4,69 @@ public class Ordenacao_3 {
 
     public static final int TAM = 10;
 
-    public static void Star_time(String[][] LAMetroTrips) throws IOException{
+    public static void Star_time(String[][] LAMetroTrips) {
         String[] data = new String[TAM];
         int[] dataInt = new int[TAM];
-        String[][] recebeVetor = new String[TAM][];
 
-        for(int i = 1, j = 0; i < TAM; i++, j++){
+        for (int i = 1, j = 0; i < TAM; i++, j++) {
             data[j] = LAMetroTrips[i][2];
             data[j] = transformarData(data[j]);
             dataInt[j] = Integer.parseInt(data[j]);
         }
-
-        //recebeVetor = InsertionSort(LAMetroTrips, dataInt);
-        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_medioCaso.csv");;
-        //recebeVetor = InsertionSort(recebeVetor, dataInt);
-        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_melhorCaso.csv");
-        recebeVetor = PiorCaso(LAMetroTrips, dataInt);
-        for (int i = 0; i < TAM; i++){
-            System.out.println(recebeVetor[i]);
+        try {
+            CriarArquivos(LAMetroTrips, dataInt);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        //recebeVetor = InsertionSort(recebeVetor, dataInt);
-        //Main.AdicionaVirgula(recebeVetor, "LAMetroTrips_start_time_insertionSort_piorCaso.csv");
 
-        
     }
-    public static String transformarData(String data){
+
+    public static void CriarArquivos(String[][] LAMetroTrips, int[] dataInt) throws IOException {
+        // INSERTION SORT
+        // Executa arquivo em médio caso
+        String[][] dadosAlterados = LAMetroTrips;
+
+        dadosAlterados = Algoritmos.InsertionSort(LAMetroTrips, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_Algoritmos.insertionSort_medioCaso.csv");
+        // Executa arquivo em melhor caso
+        dadosAlterados = Algoritmos.InsertionSort(dadosAlterados, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_Algoritmos.insertionSort_melhorCaso.csv");
+        // Inverte valores da matriz para ordena-lo no pior caso
+        dadosAlterados = PiorCaso(LAMetroTrips, dataInt);
+        dadosAlterados = Algoritmos.InsertionSort(dadosAlterados, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_Algoritmos.insertionSort_piorCaso.csv");
+
+        // SELECTION SORT
+        dadosAlterados = LAMetroTrips;
+        // Executa arquivo em médio caso
+        dadosAlterados = SelectionSort(LAMetroTrips, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_selectionSort_medioCaso.csv");
+        // Executa arquivo em melhor caso
+        dadosAlterados = SelectionSort(dadosAlterados, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_selectionSort_melhorCaso.csv");
+        // Inverte valores da matriz para ordena-lo no pior caso
+        dadosAlterados = PiorCaso(LAMetroTrips, dataInt);
+        dadosAlterados = SelectionSort(dadosAlterados, dataInt);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_selectionSort_piorCaso.csv");
+
+        // QUICK SORT
+        dadosAlterados = LAMetroTrips;
+        // Executa arquivo em médio caso
+        //vetor,0,vetor.length-1
+        dadosAlterados = QuickSort(LAMetroTrips, dataInt, 0, dataInt.length);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_medioCaso.csv");
+        // Executa arquivo em melhor caso
+        dadosAlterados = QuickSort(LAMetroTrips, dataInt, 0, dataInt.length);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_melhorCaso.csv");
+        // Inverte valores da matriz para ordena-lo no pior caso
+        dadosAlterados = PiorCaso(LAMetroTrips, dataInt);
+        dadosAlterados = QuickSort(LAMetroTrips, dataInt, 0, dataInt.length);
+        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_piorCaso.csv");
+
+    }
+    
+    public static String TransformarData(String data) {
         String[] aux = data.split("/");
         String aux2 = aux[2];
         String[] aux3 = aux2.split(" ");
@@ -39,38 +77,20 @@ public class Ordenacao_3 {
 
         return newData;
     }
-    public static String[][] PiorCaso(String[][] table, int[] vetor){ 
-
-        for(int i = 1; i < vetor.length - 1; i++){
-            for (int j = 1; j < vetor.length - 1 - i; j++){
-                if (vetor[j] < vetor[j + 1]){
+    public static String[][] PiorCaso(String[][] table, int[] vetor) {
+        for (int i = 1; i < vetor.length - 1; i++) {
+            for (int j = 1; j < vetor.length - 1 - i; j++) {
+                if (vetor[j] < vetor[j + 1]) {
                     int aux = vetor[j];
                     vetor[j] = vetor[j + 1];
                     vetor[j + 1] = aux;
 
                     String Aux = table[j][2];
-                    table[j][2] = table[j+1][2];
+                    table[j][2] = table[j + 1][2];
                     table[j + 1][2] = Aux;
                 }
             }
         }
-
-        return table;  
-    }
-    public static String[][] InsertionSort(String[][] table, int[] vetor) {
-        int key;
-    
-        for (int j = 1, i; j < vetor.length; j++){
-            key = vetor[j];
-            for ( i = j - 1; (i >= 0) && (vetor[i] > key); i--){
-                vetor[i + 1] = vetor[i];
-
-
-            }
-            vetor[i + 1] = key;
-        }
         return table;
     }
-    //public static int[]
-
 }
