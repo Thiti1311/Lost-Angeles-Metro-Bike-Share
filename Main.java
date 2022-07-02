@@ -26,7 +26,7 @@ public class Main {
         // Carrega arquivos nas matrizes MainArchive e StationsID
         ExecutaCsv.LerCsv(path_main, MainArchive);
         ExecutaCsv.LerCsv(path_stations, StationsId);
-       /*   
+       
         // Primeira transformação
         System.out.printf("\nGerando LAMetroTrips.csv...");
         // Compara os dados da coluna 'station_id' do 'stations.csv' com a do arquivo 'LA_Metro_Bike...'
@@ -42,9 +42,9 @@ public class Main {
         }
         // Chama o método 'AdicionaVirgula' para concatenar os elementos das colunas linha a linha e envia o nome do arquivo a ser gereado
         AdicionaVirgula(MainArchive,"LAMetroTrips"); 
-        System.out.printf("Arquivo Gerado com Sucesso!!\n");*/
-        Ordenacao_3.Star_time(MainArchive);
-/*
+        System.out.printf("Arquivo Gerado com Sucesso!!\n");
+        String[][] Ordenacoes = MainArchive;
+
         // Segunda transformação
         System.out.printf("\nGerando LAMetroTrips_F1.csv...");
         // Cria variavel para receber a posição da linha que contém viagens de Pasadena
@@ -93,8 +93,26 @@ public class Main {
         System.out.printf("Arquivo Gerado com Sucesso!!\n");
 
         System.out.printf("\n*****************************************************\n");
+        System.out.printf("* Agora usaremos os seguintes algoritmos de ordenação *\n");
+        System.out.printf("* teremos arquivos de medio, pior e melhor caso para  *\n");
+        System.out.printf("* cada algoritmo pedido.                              *\n");
+        System.out.printf("\n*****************************************************\n");
+
+        System.out.printf("* Ordenação 1 - Ordem em ordem alfabetica pelos nomes *\n");
+        System.out.printf("* das estações (campo station_name/ station_id)       *\n");
+        //Ordenacao_1.n sei o nome(Ordenacoes);
+        System.out.printf("\n* Ordenação 1 feita!!                               *\n\n");
+        System.out.printf("* Ordenação 2 - pelo campo de duração da viagem       *\n");
+        System.out.printf("* (campo duration) do menor para o maior.             *\n");
+        Ordenacao_2.Duration(Ordenacoes);
+        System.out.printf("\n* Ordenação 2 feita!!                               *\n\n");
+        System.out.printf("* Ordenação 3 - pela data de início da viagem         *\n");
+        System.out.printf("* (campo Start_time) mais recente para o mais antigo. *\n");
+        Ordenacao_3.Star_time(Ordenacoes);
+        System.out.printf("\n* Ordenação 3 feita!!                               *\n\n");
+        System.out.printf("\n*****************************************************\n");
         System.out.printf("********** Programa executado com sucesso. **********\n");
-        System.out.printf("*****************************************************\n");*/
+        System.out.printf("*****************************************************\n");
     }
     public static void AdicionaVirgula(String[][] MatrizString, String archiveName) throws IOException{
         // Inicializa a variavel que vai conter e fomrar cada linha do arquivo

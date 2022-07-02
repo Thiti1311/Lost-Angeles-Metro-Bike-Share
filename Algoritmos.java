@@ -1,72 +1,84 @@
 public class Algoritmos {
 
     private static int tamanho;
-    private static int[] lista;
+    private static String[][] lista;
+    public static int column;
 
-    public static String[][] InsertionSort(String[][] table, int[] vetor) {
-        int key;
+    public static String[][] InsertionSort(String[][] table, int coluna) {
+        String[] key;
 
-        for (int j = 1, i; j < vetor.length; j++) {
-            key = vetor[j];
-            for (i = j - 1; (i >= 0) && (vetor[i] > key); i--) {
-                vetor[i + 1] = vetor[i];
+        for (int j = 1, i; j < table.length; j++) {
+            key = table[j];
+            for (i = j - 1; (i >= 0) && (Integer.parseInt(table[i][coluna]) > Integer.parseInt(key[coluna])); i--) {
+                table[i + 1][coluna] = table[i][coluna];
             }
-            vetor[i + 1] = key;
+            table[i + 1] = key;
         }
         return table;
     }
-    public static String[][] SelectionSort(String[][] table, int[] vetor) {
-        for (int i = 0; i < vetor.length - 1; i++) {
+    public static String[][] SelectionSort(String[][] arr, int coluna) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int index = i;
-            for (int j = i + 1; j < vetor.length; j++) {
-                if (vetor[j] < vetor[index]) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (Integer.parseInt(arr[j][coluna]) < Integer.parseInt(arr[index][coluna])) {
                     index = j;
                 }
             }
-            int menorNumero = vetor[index];
-            vetor[index] = vetor[i];
-            vetor[i] = menorNumero;
+            String[] smallerNumber = arr[index];
+            arr[index] = arr[i];
+            arr[i] = smallerNumber;
 
-            String Aux = table[index][2];
-            table[index][2] = table[i][2];
-            table[i][2] = Aux;
+
         }
-        return table;
+        return arr;
     }
-    private static String[][] QuickSort(String[][] table, int[] vetor, int inicio, int fim) {
-        if (inicio < fim) {
-            int posicaoPivo = Dividir(table, vetor, inicio, fim);
-            QuickSort(table, vetor, inicio, posicaoPivo - 1);
-            QuickSort(table, vetor, posicaoPivo + 1, fim);
-        }
-        return table;
-    }
-    private static int Dividir(String[][] table, int[] vetor, int inicio, int fim) {
-        int pivo = vetor[inicio];
-        int i = inicio + 1, f = fim;
-        while (i <= f) {
-            if (vetor[i] <= pivo)
-                i++;
-            else if (pivo < vetor[f])
-                f--;
-            else {
-                int troca = vetor[i];
-                vetor[i] = vetor[f];
-                vetor[f] = troca;
-
-                String Aux = table[i][2];
-                table[i][2] = table[f][2];
-                table[f][2] = Aux;
-
-                i++;
-                f--;
+    public static String[][] BubbleSort(String[][] matriz, int coluna) {
+        int n = matriz.length;
+        String temp;
+        for(int i=1; i < n; i++){
+            for(int j=2; j < (n-i); j++){
+                if(Integer.parseInt(matriz[j-1][coluna]) > Integer.parseInt(matriz[j][coluna])){
+                    temp = matriz[j-1][coluna];
+                    matriz[j-1][coluna] = matriz[j][coluna];
+                    matriz[j][coluna] = temp;
+                }
             }
         }
-        vetor[inicio] = vetor[f];
-        vetor[f] = pivo;
-        return f;
+        return matriz;
     }
-    public static void HeapSort(int[] array) {
+    public static String[][] QuickSort(String[][] matriz, int begin, int end, int coluna) {
+        column = coluna;
+        if (begin < end) {
+            int particaoIndex = Particao(matriz, begin, end);
+
+            QuickSort(matriz, begin, particaoIndex-1, coluna);
+            QuickSort(matriz, particaoIndex+1, end, coluna);
+        }
+        return matriz;
+    }
+
+    private static int Particao(String[][] matriz, int begin, int end) {
+        String[] pivot = matriz[end];
+        int i = (begin-1);
+    
+        for (int j = begin; j < end; j++) {
+            if (Integer.parseInt(matriz[j][column]) <= Integer.parseInt(pivot[1])) {
+                i++;
+
+                String[] swapTemp = matriz[i];
+                matriz[i] = matriz[j];
+                matriz[j] = swapTemp;
+            }
+        }
+
+        String[] swapTemp = matriz[i+1];
+        matriz[i+1] = matriz[end];
+        matriz[end] = swapTemp;
+
+        return i+1;
+    }
+    public static String[][] HeapSort(String[][] array, int coluna) {
+        column = coluna;
         lista = array;      
         tamanho = lista.length - 1;    
 
@@ -77,6 +89,7 @@ public class Algoritmos {
             tamanho -= 1;           
             MaxHeap(0);    
         }
+        return lista;
     }
     private static void ConstroiHeap() {
         int meio = (int) (tamanho/2);
@@ -85,21 +98,138 @@ public class Algoritmos {
         }
     }
     private static void Trocar(int i, int j) {
-        int aux;
+        String aux;
 
-        aux = lista[i];
-        lista[i] = lista[j];
-        lista[j] = aux;
+        aux = lista[i][column];
+        lista[i][column] = lista[j][column];
+        lista[j][column] = aux;
     }
     private static void MaxHeap(int pai) {
         int maior = pai, esquerda = 2 * pai + 1, direita = 2 * pai + 2; 
 
-        if (esquerda <= tamanho && lista[esquerda] > lista[maior]) maior = esquerda;
+        if (esquerda <= tamanho && Integer.parseInt(lista[esquerda][column]) > Integer.parseInt(lista[maior][column])) maior = esquerda;
 
-        if (direita <= tamanho && lista[direita] > lista[maior]) maior = direita;
+        if (direita <= tamanho && Integer.parseInt(lista[direita][column]) > Integer.parseInt(lista[maior][column])) maior = direita;
         if (maior != pai) {
             Trocar(pai, maior);      
             MaxHeap(maior); 
         }
     }
+    public static String[][] MergeSort(String[][] vetor, int inicio, int fim, int coluna) {
+        column = coluna;
+        if(inicio < fim - 1) {
+            int meio = (inicio + fim) / 2;
+            MergeSort(vetor, inicio, meio, coluna);
+            MergeSort(vetor, meio, fim, coluna);
+            Intercala(vetor, inicio, meio, fim);
+        }
+
+        return vetor;
+    }
+
+    private static void Intercala(String[][] vetor, int inicio, int meio, int fim) {
+        String[][] novoVetor = new String[fim - inicio][];
+        int i = inicio;
+        int m = meio;
+        int pos = 0;
+        while(i < meio && m < fim) {
+          if(Integer.parseInt(vetor[i][1]) <= Integer.parseInt(vetor[m][column])) {
+            novoVetor[pos] = vetor[i];
+            pos = pos + 1;
+            i = i + 1;
+          } else {
+            novoVetor[pos] = vetor[m];
+            pos = pos + 1;
+            m = m + 1;
+          }
+        }
+        while(i < meio) {
+          novoVetor[pos] = vetor[i];
+          pos = pos + 1;
+          i = i + 1;
+        }
+        while(m < fim) {
+            novoVetor[pos] = vetor[m];
+            pos = pos + 1;
+            m = m + 1;
+        }
+        for(pos = 0, i = inicio; i < fim; i++, pos++) {
+            vetor[i] = novoVetor[pos];  
+        }
+    }
+    public static String[][] CoutingSort(String[][] matriz, int coluna)
+    {
+        int n = matriz.length;
+ 
+        String[][] output = new String[n][];
+ 
+        int count[] = new int[500];
+        for (int i = 0; i < 500; ++i)
+            count[i] = 0;
+        for (int i = 1; i < n; ++i)
+            ++count[Integer.parseInt(matriz[i][coluna])];
+        for (int i = 1; i <= 255; ++i)
+            count[i] += count[i - 1];
+        for (int i = n - 1; i >= 1; i--) {
+            output[count[Integer.parseInt(matriz[i][coluna])] - 1] = matriz[i];
+            --count[Integer.parseInt(matriz[i][coluna])];
+        }
+        for (int i = 1; i < n; ++i)
+            matriz[i] = output[i];
+        
+        return matriz;
+    }
+    public static String[][] QuickSortMedianaDeTres(String[][] matriz, int inicio, int fim, int coluna){      
+        column = coluna;  
+        if(inicio < fim){
+            int q = ParticaoMediana(matriz, inicio, fim);
+            QuickSortMedianaDeTres(matriz, inicio, q - 1, coluna);
+            QuickSortMedianaDeTres(matriz, q + 1, fim, coluna);            
+        }
+        return matriz;
+    }
+    private static int ParticaoMediana(String[][] matriz, int inicio, int fim){
+        int meio = (inicio + fim)/2;
+        String[] a = matriz[inicio];
+        String[] b = matriz[meio];
+        String[] c = matriz[fim];
+        int medianaIndice; 
+        if(Integer.parseInt(a[column]) < Integer.parseInt(b[column])){
+            if(Integer.parseInt(b[column]) < Integer.parseInt(c[column])){
+                medianaIndice = meio;
+            }else{                
+                if(Integer.parseInt(a[column]) < Integer.parseInt(c[column])){
+                    medianaIndice = fim;
+                }else{
+                    medianaIndice = inicio;
+                }
+            }
+        }else{
+            if(Integer.parseInt(c[column]) < Integer.parseInt(b[column])){
+                medianaIndice = meio;
+            }else{
+                if(Integer.parseInt(c[column]) < Integer.parseInt(a[column])){
+                    medianaIndice = fim;
+                }else{
+                    medianaIndice = inicio;
+                }
+            }
+        }
+        Swap(matriz, medianaIndice, fim);
+        String[] pivo = matriz[fim];
+        int i = inicio - 1;
+        for(int j = inicio; j <= fim - 1; j++){
+            if(Integer.parseInt(matriz[j][column]) <= Integer.parseInt(pivo[1])){
+                i = i + 1;
+                Swap(matriz, i, j);
+            }
+        }
+        Swap(matriz, i + 1, fim);
+        return i + 1;
+    }
+    private static void Swap(String[][] matriz, int i, int j){
+        String[] temp = matriz[i];
+        matriz[i] = matriz[j];
+        matriz[j] = temp;
+    }    
 }
