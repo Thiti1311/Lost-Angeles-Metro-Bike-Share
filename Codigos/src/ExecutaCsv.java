@@ -22,7 +22,7 @@ public class ExecutaCsv{
     }
     public static String VerificarExistencia(String nome) throws IOException{
         // Forma o nome do arquivo para a busca
-        String path = "../Lost-Angeles-Metro-Bike-Share/Arquivos/" + nome +".csv"; 
+        String path = "../Lost-Angeles-Metro-Bike-Share/Arquivos/NovosArquivos/" + nome +".csv"; 
         // Define o nome da variavel arquivo
         File arquivo = new File(path);
         // Verifica se o arquivo existe

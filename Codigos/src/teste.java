@@ -1,28 +1,32 @@
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class teste {
 
-    void sort(String[][] matriz, String[] dataInt, int coluna)
-    {
-        int n = matriz.length;
- 
-        String output[][] = new String[n][];
- 
-        int count[] = new int[20211209];
-        for (int i = 0; i < 20211209; ++i)
-            count[i] = 0;
- 
-        for (int i = 0; i < n; ++i)
-            ++count[Integer.parseInt(dataInt[i])];
- 
-        for (int i = 1; i <= 10105605; ++i)
-            count[i] += count[i - 1];
- 
-        for (int i = n - 1; i >= 0; i--) {
-            output[count[Integer.parseInt(dataInt[i])] - 1] = matriz[i];
-            --count[Integer.parseInt(dataInt[i])];
+    public static void main(String[] args) {
+        String data = "05/10/2020";
+        String data1 = "07/07/2020";
+        try {
+            SimpleDateFormat sdformat = new 
+                SimpleDateFormat("dd/MM/yyyy");
+            Date date1 = sdformat.parse(data);
+            Date date2 = sdformat.parse(data1);
+            System.out.println(
+                "Date-1: " + sdformat.format(date1));
+            System.out.println(
+                "Date-2: " + sdformat.format(date2));
+                if(date1.compareTo(date2) < 0) {
+                System.out.println(
+                    date1.compareTo(date2));
+            } else if(date1.compareTo(date2) > 0) {
+                System.out.println(
+                    "Date-1 is before Date-2");
+            } else if(date1.compareTo(date2) == 0) {
+                System.out.println(
+                    "Date-1 is same as Date-2");
+            } 
+        } catch (ParseException ex) {
         }
-        for (int i = 0; i < n; ++i)
-            matriz[i] = output[i];
     }
- 
-   
 }

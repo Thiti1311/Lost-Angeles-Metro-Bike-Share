@@ -4,20 +4,23 @@ public class Algoritmos_2 {
     private static String[][] lista;
     public static int column;
 
-    public static String[][] InsertionSort(String[][] table, int coluna) {
+    public static String[][] InsertionSort(String[][] table){
         String[] key;
-
-        for (int j = 2, i; j < table.length; j++) {
-            key = table[j];
-            for (i = j - 1; (i >= 0) && (Integer.parseInt(table[i][coluna]) > Integer.parseInt(key[coluna])); i--) {
-                table[i + 1][coluna] = table[i][coluna];
+        for(int i = 2, j; i < table.length; i++){
+            key = table[i];
+            j = i - 1;
+            while (j >= 1 && Integer.parseInt(table[j][1]) > Integer.parseInt(key[1]))
+            {
+                table[j + 1] = table[j];
+                j = j - 1;
             }
-            table[i + 1] = key;
-        }
+            table[j + 1] = key;
+            }
         return table;
     }
+
     public static String[][] SelectionSort(String[][] arr, int coluna) {
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 1; i < arr.length - 1; i++) {
             int index = i;
             for (int j = i + 1; j < arr.length; j++) {
                 if (Integer.parseInt(arr[j][coluna]) < Integer.parseInt(arr[index][coluna])) {
@@ -27,8 +30,6 @@ public class Algoritmos_2 {
             String[] smallerNumber = arr[index];
             arr[index] = arr[i];
             arr[i] = smallerNumber;
-
-
         }
         return arr;
     }
