@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class App {
-    public static final int TAM = 1250836; // Variavél constante do tamanho 
+    public static final int TAM = 1250836; // Variavél constante do tamanho 1250836
                                           //do arquivo principal "LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv"
     public static void main(String[] args) throws Exception {
 
@@ -92,10 +92,21 @@ public class App {
         ExecutaCsv.FiltrarCSV(MainArchive, "LAMetroTrips_F2", listaPosicao, contador);
         System.out.printf("Arquivo Gerado com Sucesso!!\n");
 
-        System.out.printf("\n* Ordenação 1 feita!!                               *\n\n");
-        System.out.printf("* Ordenação 2 - pelo campo de duração da viagem     *\n");
-        System.out.printf("* (campo duration) do menor para o maior.           *\n");
+        System.out.printf("\n*****************************************************\n");
+        System.out.printf("* Agora usaremos os seguintes algoritmos de ordenação *\n");
+        System.out.printf("* teremos arquivos de medio, pior e melhor caso para  *\n");
+        System.out.printf("* cada algoritmo pedido.                              *\n");
+        System.out.printf("\n*****************************************************\n");
+
+        //System.out.printf("* Ordenação 1 - Ordem alfabetica pelos nomes          *\n");
+        //System.out.printf("* das estações (campo station_name/ station_id)       *\n");
+        //Ordenacao_1.n sei o nome(Ordenacoes);
+        //System.out.printf("\n* Ordenação 1 feita!!                                 *\n\n");
+        System.out.printf("* Ordenação 2 - Campo de duração da viagem            *\n");
+        System.out.printf("* (campo duration) do menor para o maior.             *\n");
         Ordenacao_2.Duration(Ordenacoes);
+        System.out.printf("\n* Ordenação 2 feita!!                                 *\n\n");
+
 }
     public static void AdicionaVirgula(String[][] MatrizString, String archiveName) throws IOException{
         // Inicializa a variavel que vai conter e fomrar cada linha do arquivo

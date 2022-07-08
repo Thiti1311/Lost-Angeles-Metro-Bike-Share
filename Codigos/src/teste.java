@@ -1,32 +1,42 @@
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 public class teste {
 
-    public static void main(String[] args) {
-        String data = "05/10/2020";
-        String data1 = "07/07/2020";
-        try {
-            SimpleDateFormat sdformat = new 
-                SimpleDateFormat("dd/MM/yyyy");
-            Date date1 = sdformat.parse(data);
-            Date date2 = sdformat.parse(data1);
-            System.out.println(
-                "Date-1: " + sdformat.format(date1));
-            System.out.println(
-                "Date-2: " + sdformat.format(date2));
-                if(date1.compareTo(date2) < 0) {
-                System.out.println(
-                    date1.compareTo(date2));
-            } else if(date1.compareTo(date2) > 0) {
-                System.out.println(
-                    "Date-1 is before Date-2");
-            } else if(date1.compareTo(date2) == 0) {
-                System.out.println(
-                    "Date-1 is same as Date-2");
-            } 
-        } catch (ParseException ex) {
-        }
+  public static int column;
+
+  public static void main(String[] args) {
+    String[][] Main = new String[10][10];
+    int k = 9;
+    for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        Main[i][j] = Integer.toString(k);
+      }
+      k--;
+      // System.out.println("");
     }
+    // System.out.println("");
+    // System.out.printf("%s ,", Main[0][0]);
+    Main = SelectionSort(Main, 1);
+    for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        System.out.printf("%s ,", Main[i][j]);
+      }
+      System.out.println("");
+    }
+  }
+
+  public static String[][] SelectionSort(String[][] v, int coluna) {
+    for (int i = 1; i < v.length; i++) {
+		
+      int i_menor = i;
+      for (int j = i + 1; j < v.length; j++)
+        if (Integer.parseInt(v[j][coluna]) < Integer.parseInt(v[i_menor][coluna]))
+          i_menor = j;
+      
+      String[] aux = v[i];
+      v[i] = v[i_menor];
+      v[i_menor] = aux;
+    
+    }		
+    return v;
+  }
 }

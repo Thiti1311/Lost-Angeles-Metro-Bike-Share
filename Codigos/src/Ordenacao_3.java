@@ -37,7 +37,7 @@ public class Ordenacao_3 {
         }
         // INSERTION SORT
         // Executa arquivo em médio caso
-        dadosOrdenados1 = Algoritmos_3.InsertionSort(particao1, Coluna);
+       /* dadosOrdenados1 = Algoritmos_3.InsertionSort(particao1, Coluna);
         dadosOrdenados2 = Algoritmos_3.InsertionSort(particao2, Coluna);
         dadosOrdenados3 = Algoritmos_3.InsertionSort(particao3, Coluna);
         dadosOrdenados4 = Algoritmos_3.InsertionSort(particao4, Coluna);
@@ -50,17 +50,17 @@ public class Ordenacao_3 {
         dadosAlterados = Unir(dadosAlterados, aux, 1);
         dadosAlterados = Algoritmos_3.InsertionSort(dadosAlterados, Coluna);
 
-/*
+*/
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_insertionSort_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.InsertionSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.InsertionSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_nsertionSort_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.InsertionSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.InsertionSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_insertionSort_piorCaso.csv");
-        System.out.println("Insrtion");*/
-/* 
+        System.out.println("Insrtion");
+
        // SELECTION SORT
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
@@ -73,72 +73,72 @@ public class Ordenacao_3 {
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_3.SelectionSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_selectionSort_piorCaso.csv");
-         /*
+         
         // QUICK SORT
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
-        dadosAlterados = Algoritmos_3.QuickSort(LAMetroTrips, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSort(LAMetroTrips, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.QuickSort(dadosAlterados, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSort(dadosAlterados, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.QuickSort(dadosAlterados, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSort(dadosAlterados, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSort_piorCaso.csv");
 
         // HEAP SORT
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
-        dadosAlterados = Algoritmos_3.HeapSort(LAMetroTrip, Coluna);
+        dadosAlterados = Algoritmos_3.HeapSort(LAMetroTrips, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_heapSort_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.HeapSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.HeapSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_heapSort_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.HeapSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.HeapSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_heapSort_piorCaso.csv");
 
         // MERGE SORT
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
-        dadosAlterados = Algoritmos_3.MergeSort(LAMetroTrips,1,TA, Coluna);
+        dadosAlterados = Algoritmos_3.MergeSort(LAMetroTrips,1,TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_mergeSort_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.MergeSort(dadosAlterados,1,TA, Coluna);
+        dadosAlterados = Algoritmos_3.MergeSort(dadosAlterados,1,TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_mergeSort_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.MergeSort(dadosAlterados,1,TA, Coluna);
+        dadosAlterados = Algoritmos_3.MergeSort(dadosAlterados,1,TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_mergeSort_piorCaso.csv");
 
         // COUTING SORT
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
-        dadosAlterados = Algoritmos_3.CoutingSort(LAMetroTrip, Coluna);
+        dadosAlterados = Algoritmos_3.CoutingSort(LAMetroTrips, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_coutingSort_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.CoutingSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.CoutingSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_coutingSort_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.CoutingSort(dadosAlterado, Coluna);
+        dadosAlterados = Algoritmos_3.CoutingSort(dadosAlterados, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_coutingSort_piorCaso.csv");
 
         // QUICK SORT MEDIANA DE TRES
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
-        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSortMedianaDeTres_medioCaso.csv");
         // Executa arquivo em melhor caso
-        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSortMedianaDeTres_melhorCaso.csv");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TA, Coluna);
+        dadosAlterados = Algoritmos_3.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM, Coluna);
         Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_start_time_quickSortMedianaDeTres_piorCaso.csv");
-*/
+
     }
     public static String TransformarData(String elemento) {
         String[] divide = elemento.split("/");
@@ -147,9 +147,13 @@ public class Ordenacao_3 {
         if(Integer.parseInt(divide[1]) > 12){
             String[] aux = divide[2].split(" ");
             data = aux[0]+divide[0]+divide[1];
+            divide = aux[1].split(":");
+            data += divide[0]+divide[1];
         }else{
             String[] aux = divide[2].split(" ");
-            data = aux[0]+divide[0]+divide[1];
+            data = aux[0]+divide[1]+divide[0];
+            divide = aux[1].split(":");
+            data += divide[0]+divide[1];
         }
 
        return data;
@@ -177,22 +181,41 @@ public class Ordenacao_3 {
         
         return matriz;
     }
-    public static String[][] Unir(String[][] concatenar1, String[][] concatenar2, int num){
+    public static void Unir(String[][] vetor1, String[][] vetor2, String[][] vetor3, String[][] vetor4){
         
-        String[][] primeiraMetade = new String[TAM/2][];
-        String[][] segundaMetade = new String[TAM/2][];
+        int inicio1 = 1, inicio2 = 0, fim = TAM, meio = TAM/2;
 
-    for (int i = 1, j = 0; i < (TAM/2) && j < (TAM/2); i++, j++){
-        //if(concatenar1 < )
-        primeiraMetade[i] = concatenar1[j];
-        
-    }
+        String[][] novoVetor = new String[TAM][];
+        int i = inicio1;
+        int m = inicio2;
+        int pos = 0;
+        while(i < meio && m < fim) {
 
-    String[][] uniao_1 = Algoritmos_2.MergeSort(primeiraMetade, 1, primeiraMetade.length, 2);
-    String[][] uniao_2 = Algoritmos_2.MergeSort(segundaMetade, 0, segundaMetade.length, 2);
+            String data = Ordenacao_3.TransformarData(vetor1[i][Coluna]);
+            String data_secundaria = Ordenacao_3.TransformarData(vetor2[m][Coluna]);
 
-    for (int i = 1, j = 0; i < (TAM/2); i++, j++)
-        primeiraMetade[i] = concatenar1[j];
-        
+          if(Integer.parseInt(data) <= Integer.parseInt(data_secundaria)) {
+            novoVetor[pos] = vetor1[i];
+            pos = pos + 1;
+            i = i + 1;
+          } else {
+            novoVetor[pos] = vetor2[m];
+            pos = pos + 1;
+            m = m + 1;
+          }
+        }
+        while(i < meio) {
+          novoVetor[pos] = vetor1[i];
+          pos = pos + 1;
+          i = i + 1;
+        }
+        while(m < fim) {
+            novoVetor[pos] = vetor2[m];
+            pos = pos + 1;
+            m = m + 1;
+        }
+        for(pos = 0, i = inicio1; i < fim; i++, pos++) {
+            vetor1[i] = novoVetor[pos];  
+        }
     }
 }

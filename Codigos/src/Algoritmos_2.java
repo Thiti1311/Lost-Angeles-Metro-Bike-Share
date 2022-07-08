@@ -4,10 +4,23 @@ public class Algoritmos_2 {
     private static String[][] lista;
     public static int column;
 
+    
     public static String[][] InsertionSort(String[][] table){
-        String[] key;
         for(int i = 2, j; i < table.length; i++){
-            key = table[i];
+            String[] key = table[i];
+            j = i - 1;
+            while (j >= 1 && Integer.parseInt(table[j][1]) > Integer.parseInt(key[1]))
+            {
+                table[j + 1] = table[j];
+                j = j - 1;
+            }
+            table[j + 1] = key;
+            }
+        return table;
+    }/*
+    public static String[][] InsertionSort(String[][] table, int inicio, int fim){
+        for(int i = inicio+1, j; i < fim; i++){
+            String[] key = table[i];
             j = i - 1;
             while (j >= 1 && Integer.parseInt(table[j][1]) > Integer.parseInt(key[1]))
             {
@@ -18,32 +31,34 @@ public class Algoritmos_2 {
             }
         return table;
     }
-
-    public static String[][] SelectionSort(String[][] arr, int coluna) {
-        for (int i = 1; i < arr.length - 1; i++) {
-            int index = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (Integer.parseInt(arr[j][coluna]) < Integer.parseInt(arr[index][coluna])) {
-                    index = j;
-                }
-            }
-            String[] smallerNumber = arr[index];
-            arr[index] = arr[i];
-            arr[i] = smallerNumber;
-        }
-        return arr;
+*/
+    public static String[][] SelectionSort(String[][] v, int coluna) {
+        for (int i = 1; i < v.length; i++) {
+		
+            int i_menor = i;
+            for (int j = i + 1; j < v.length; j++)
+              if (Integer.parseInt(v[j][coluna]) < Integer.parseInt(v[i_menor][coluna]))
+                i_menor = j;
+            
+            String[] aux = v[i];
+            v[i] = v[i_menor];
+            v[i_menor] = aux;
+          
+        }		
+        return v;
     }
+    
     public static String[][] QuickSort(String[][] matriz, int begin, int end, int coluna) {
         column = coluna;
         if (begin < end) {
             int particaoIndex = Particao(matriz, begin, end);
-
-            QuickSort(matriz, begin, particaoIndex-1, coluna);
-            QuickSort(matriz, particaoIndex+1, end, coluna);
+    
+            matriz = QuickSort(matriz, begin, particaoIndex-1, coluna);
+            matriz = QuickSort(matriz, particaoIndex+1, end, coluna);
         }
         return matriz;
     }
-
+    
     private static int Particao(String[][] matriz, int begin, int end) {
         String[] pivot = matriz[end];
         int i = (begin-1);
@@ -51,26 +66,26 @@ public class Algoritmos_2 {
         for (int j = begin; j < end; j++) {
             if (Integer.parseInt(matriz[j][column]) <= Integer.parseInt(pivot[column])) {
                 i++;
-
+    
                 String[] swapTemp = matriz[i];
                 matriz[i] = matriz[j];
                 matriz[j] = swapTemp;
             }
         }
-
+    
         String[] swapTemp = matriz[i+1];
         matriz[i+1] = matriz[end];
         matriz[end] = swapTemp;
-
+    
         return i+1;
     }
     public static String[][] HeapSort(String[][] array, int coluna) {
         column = coluna;
         lista = array;      
         tamanho = lista.length - 1;    
-
+    
         ConstroiHeap();
-
+    
         for (int i = tamanho; i > 0; i--) {
             Trocar(0, tamanho);      
             tamanho -= 1;           
@@ -85,17 +100,17 @@ public class Algoritmos_2 {
         }
     }
     private static void Trocar(int i, int j) {
-        String aux;
-
-        aux = lista[i][column];
-        lista[i][column] = lista[j][column];
-        lista[j][column] = aux;
+        String[] aux;
+    
+        aux = lista[i];
+        lista[i] = lista[j];
+        lista[j] = aux;
     }
     private static void MaxHeap(int pai) {
         int maior = pai, esquerda = 2 * pai + 1, direita = 2 * pai + 2; 
-
+    
         if (esquerda <= tamanho && Integer.parseInt(lista[esquerda][column]) > Integer.parseInt(lista[maior][column])) maior = esquerda;
-
+    
         if (direita <= tamanho && Integer.parseInt(lista[direita][column]) > Integer.parseInt(lista[maior][column])) maior = direita;
         if (maior != pai) {
             Trocar(pai, maior);      
