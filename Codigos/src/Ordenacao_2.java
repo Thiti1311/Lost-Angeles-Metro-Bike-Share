@@ -23,10 +23,9 @@ public class Ordenacao_2 {
         String[][] piorCaso = new String[TAM][];
 
         // MERGE SORT
-        dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.MergeSort(LAMetroTrips,1,TAM, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_medioCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_medioCaso");
 
         piorCaso[0] = dadosAlterados[0];
         for (int i = 1, j = TAM-1; i < TAM; i++ , j--){
@@ -35,109 +34,100 @@ public class Ordenacao_2 {
 
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.MergeSort(dadosAlterados,1,TAM, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.MergeSort(dadosAlterados,1,TAM, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_piorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_mergeSort_piorCaso");
 
         // HEAP SORT 
         dadosAlterados = LAMetroTrips;
-        dadosAlterados[0][1] = "0";
+        dadosAlterados[0][Coluna] = "0";
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.HeapSort(dadosAlterados, Coluna);
-        dadosAlterados[0][1] = "duration";
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_medioCaso");
+        dadosAlterados[0][Coluna] = "duration";
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_medioCaso");
         // Executa arquivo em melhor caso
-        dadosAlterados[0][1] = "0";
+        dadosAlterados[0][Coluna] = "0";
         dadosAlterados = Algoritmos_2.HeapSort(dadosAlterados, Coluna);
-        dadosAlterados[0][1] = "duration";
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_melhorCaso");
+        dadosAlterados[0][Coluna] = "duration";
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
-        dadosAlterados[0][1] = "0";
+        dadosAlterados[0][Coluna] = "0";
         dadosAlterados = Algoritmos_2.HeapSort(dadosAlterados, Coluna);
-        dadosAlterados[0][1] = "duration";
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_piorCaso");
+        dadosAlterados[0][Coluna] = "duration";
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_heapSort_piorCaso");
 
         // InsertionSort
         // Executa o arquivo em medio caso 
         dadosAlterados = Algoritmos_2.InsertionSort(LAMetroTrips);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_medioCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_medioCaso");
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.InsertionSort(dadosAlterados);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.InsertionSort(dadosAlterados);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_piorCaso");
-   
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_insertionSort_piorCaso");
+    /*
         // SELECTION SORT
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.SelectionSort(LAMetroTrips, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_medioCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_medioCaso");
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.SelectionSort(dadosAlterados, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.SelectionSort(dadosAlterados, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_piorCaso");
-
-   /*      // QUICK SORT
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_selectionSort_piorCaso");
+    */
+   /*
+        // QUICK SORT
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.QuickSort(LAMetroTrips, 0, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_medioCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_medioCaso");
         piorCaso[0] = dadosAlterados[0];
         for (int i = 1, j = TAM-1; i < TAM; i++ , j--){
             piorCaso[i] = dadosAlterados[j];
         }
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.QuickSort(dadosAlterados, 1, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.QuickSort(dadosAlterados, 1, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_piorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSort_piorCaso");
 
-*//*
+    */
+    /*
         // COUTING SORT
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.CoutingSort(LAMetroTrips, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_medioCaso");
-
-        piorCaso[0] = dadosAlterados[0];
-        for (int i = 1, j = TAM-1; i < TAM; i++ , j--){
-            piorCaso[i] = dadosAlterados[j];
-        }
-
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_medioCaso");
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.CoutingSort(dadosAlterados, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.CoutingSort(dadosAlterados, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_piorCaso");
-
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_coutingSort_piorCaso");
+    */
+    /*
         // QUICK SORT MEDIANA DE TRES
         dadosAlterados = LAMetroTrips;
         // Executa arquivo em médio caso
         dadosAlterados = Algoritmos_2.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_medioCaso");
-
-        piorCaso[0] = dadosAlterados[0];
-        for (int i = 1, j = TAM-1; i < TAM; i++ , j--){
-            piorCaso[i] = dadosAlterados[j];
-        }
-
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_medioCaso");
         // Executa arquivo em melhor caso
         dadosAlterados = Algoritmos_2.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_melhorCaso");
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_melhorCaso");
         // Inverte valores da matriz para ordena-lo no pior caso
         dadosAlterados = piorCaso;
         dadosAlterados = Algoritmos_2.QuickSortMedianaDeTres(LAMetroTrips, 1, TAM-1, Coluna);
-        Main.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_piorCaso");
-*/
+        App.AdicionaVirgula(dadosAlterados, "LAMetroTrips_duration_quickSortMedianaDeTres_piorCaso");
+    */
     }
     public static String[][] Particiona(String[][] Arquivo){
 

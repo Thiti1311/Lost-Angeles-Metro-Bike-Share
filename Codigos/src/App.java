@@ -106,6 +106,13 @@ public class App {
         System.out.printf("* (campo duration) do menor para o maior.             *\n");
         Ordenacao_2.Duration(Ordenacoes);
         System.out.printf("\n* Ordenação 2 feita!!                                 *\n\n");
+        System.out.printf("* Ordenação 3 - Data de início da viagem              *\n");
+        System.out.printf("*(campo Start_time) mais recente para o mais antigo.  *\n"); 
+        Ordenacao_3.Star_time(Ordenacoes);
+        System.out.printf("\n* Ordenação 3 feita!!                                 *\n\n");
+        System.out.printf("\n*******************************************************\n");
+        System.out.printf("*********** Programa executado com sucesso. ***********\n");
+        System.out.printf("*******************************************************\n");
 
 }
     public static void AdicionaVirgula(String[][] MatrizString, String archiveName) throws IOException{

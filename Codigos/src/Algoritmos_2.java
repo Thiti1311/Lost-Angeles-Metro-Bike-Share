@@ -17,24 +17,9 @@ public class Algoritmos_2 {
             table[j + 1] = key;
             }
         return table;
-    }/*
-    public static String[][] InsertionSort(String[][] table, int inicio, int fim){
-        for(int i = inicio+1, j; i < fim; i++){
-            String[] key = table[i];
-            j = i - 1;
-            while (j >= 1 && Integer.parseInt(table[j][1]) > Integer.parseInt(key[1]))
-            {
-                table[j + 1] = table[j];
-                j = j - 1;
-            }
-            table[j + 1] = key;
-            }
-        return table;
     }
-*/
     public static String[][] SelectionSort(String[][] v, int coluna) {
         for (int i = 1; i < v.length; i++) {
-		
             int i_menor = i;
             for (int j = i + 1; j < v.length; j++)
               if (Integer.parseInt(v[j][coluna]) < Integer.parseInt(v[i_menor][coluna]))
@@ -117,6 +102,7 @@ public class Algoritmos_2 {
             MaxHeap(maior); 
         }
     }
+
     public static String[][] MergeSort(String[][] vetor, int inicio, int fim, int coluna) {
         column = coluna;
         if(inicio < fim - 1) {

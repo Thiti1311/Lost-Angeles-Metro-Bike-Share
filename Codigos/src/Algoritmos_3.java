@@ -1,6 +1,7 @@
 public class Algoritmos_3 {
-    private static int tamanho;
-    private static String[][] lista;
+
+    private static int tam;
+    private static String[][] vetor;
     public static int column;
     private static int TAM = App.TAM;
 
@@ -11,8 +12,9 @@ public class Algoritmos_3 {
             key = matriz[j];
 
             String data = Ordenacao_3.TransformarData(matriz[j][coluna]);
+            String data_2 = Ordenacao_3.TransformarData(key[coluna]);
 
-            for (i = j - 1; (i >= 0) && (Integer.parseInt(data) > Integer.parseInt(key[coluna])); i--) {
+            for (i = j - 1; (i >= 0) && (Integer.parseInt(data) > Integer.parseInt(data_2)); i--) {
                 matriz[i + 1][coluna] = matriz[i][coluna];
             }
             matriz[i + 1] = key;
@@ -27,9 +29,8 @@ public class Algoritmos_3 {
                 String data = Ordenacao_3.TransformarData(matriz[j][coluna]);
                 String data_secundaria = Ordenacao_3.TransformarData(matriz[j][coluna]);
 
-                if (Integer.parseInt(data) < Integer.parseInt(data_secundaria)) {
+                if (Integer.parseInt(data) < Integer.parseInt(data_secundaria))
                     index = j;
-                }
             }
             String[] smallerNumber = matriz[index];
             matriz[index] = matriz[i];
@@ -72,46 +73,54 @@ public class Algoritmos_3 {
         return i+1;
     }
     public static String[][] HeapSort(String[][] array, int coluna) {
-        column = coluna;
-        lista = array;      
-        tamanho = lista.length - 1;    
+        vetor = array;          
+        tam = vetor.length - 1;
+        
+        constroiHeap();
 
-        ConstroiHeap();
-
-        for (int i = tamanho; i > 0; i--) {
-            Trocar(0, tamanho);      
-            tamanho -= 1;           
-            MaxHeap(0);    
+        for (int i = tam; i > 0; i--) {
+            troca(0, tam);      
+            tam -= 1;           
+            maxHeapifica(0);
         }
-        return lista;
+        return vetor;
     }
-    private static void ConstroiHeap() {
-        int meio = (int) (tamanho/2);
+    
+    private static void constroiHeap() {
+        int meio = (int) (tam/2);
+        
         for (int i = meio - 1; i >= 0; i--) {
-            MaxHeap(i);
+            maxHeapifica(i);
         }
     }
-    private static void Trocar(int i, int j) {
-        String aux;
+    
+    private static void troca(int i, int j) {
+        String[] aux;
 
-        aux = lista[i][column];
-        lista[i][column] = lista[j][column];
-        lista[j][column] = aux;
+        aux = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = aux;
     }
-    private static void MaxHeap(int pai) {
-        int maior = pai, esquerda = 2 * pai + 1, direita = 2 * pai + 2; 
+    
+    private static void maxHeapifica(int pai) {
+        int maior = pai,            
+            esquerda = 2 * pai + 1,     
+            direita = 2 * pai + 2;
 
-        String data = Ordenacao_3.TransformarData(lista[esquerda][column]);
-        String data_secundaria = Ordenacao_3.TransformarData(lista[maior][column]);
+        String data = Ordenacao_3.TransformarData(vetor[esquerda][column]);
+        String data_2 = Ordenacao_3.TransformarData(vetor[maior][column]);
+        
+        if (esquerda <= tam && Integer.parseInt(data) > Integer.parseInt(data_2))
+            maior = esquerda;
 
-        if (esquerda <= tamanho && Integer.parseInt(data) > Integer.parseInt(data_secundaria)) maior = esquerda;
-
-        data = Ordenacao_3.TransformarData(lista[direita][column]);
-
-        if (direita <= tamanho && Integer.parseInt(data) > Integer.parseInt(data_secundaria)) maior = direita;
+        data = Ordenacao_3.TransformarData(vetor[direita][column]);
+        
+        if (direita <= tam && Integer.parseInt(data) > Integer.parseInt(data_2))
+            maior = direita;
+        
         if (maior != pai) {
-            Trocar(pai, maior);      
-            MaxHeap(maior); 
+            troca(pai, maior);      
+            maxHeapifica(maior);    
         }
     }
     public static String[][] MergeSort(String[][] vetor, int inicio, int fim, int coluna) {
@@ -132,11 +141,10 @@ public class Algoritmos_3 {
         int m = meio;
         int pos = 0;
         while(i < meio && m < fim) {
-
             String data = Ordenacao_3.TransformarData(vetor[i][column]);
-            String data_secundaria = Ordenacao_3.TransformarData(vetor[m][column]);
+            String data_2 = Ordenacao_3.TransformarData(vetor[m][column]);
 
-          if(Integer.parseInt(data) <= Integer.parseInt(data_secundaria)) {
+          if(Integer.parseInt(data) <= Integer.parseInt(data_2)) {
             novoVetor[pos] = vetor[i];
             pos = pos + 1;
             i = i + 1;
