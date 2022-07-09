@@ -7,7 +7,7 @@
 
 ## Execução do código
 `O arquivo enviado para o git contém uma pasta chamada 'Codigos',`
-`nela encontrasse os aquivos em java do projeot, dentre eles o 'App.java' que contém o metodo main,`
+`nela encontrasse os aquivos em java do projeto, dentre eles o 'App.java' que contém o metodo main,`
 `Basta executar esse arquivo e o programa entrará em funcionamento, porém os arquivos base`
 `'stations.csv' e 'LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.CSV'` 
 `devem ser colocados na pasta 'NovosArquivos', que encontrasse na pasta 'Arquivos'`
