@@ -16,8 +16,8 @@ public class App {
         System.out.printf("*****************************************************\n");
 
         // Define as variavéis com os nomes dos arquivos
-        String path_main = "../Lost-Angeles-Metro-Bike-Share-main/Arquivos/ArquivosOriginais/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
-        String path_stations = "../Lost-Angeles-Metro-Bike-Share-main/Arquivos/ArquivosOriginais/stations.csv";
+        String path_main = "../../Arquivos/ArquivosOriginais/LA_Metro_BikeSharing_CLEANED_2016quater3-2021q3.csv";
+        String path_stations = "../../Arquivos/ArquivosOriginais/stations.csv";
         
         // Cria matrizes para receber os dados das linhas e colunas dos arquivos especificados
         String[][] MainArchive = new String[TAM][];
@@ -26,7 +26,7 @@ public class App {
         // Carrega arquivos nas matrizes MainArchive e StationsID
         ExecutaCsv.LerCsv(path_main, MainArchive);
         ExecutaCsv.LerCsv(path_stations, StationsId);
-       
+        
         // Primeira transformação
         System.out.printf("\nGerando LAMetroTrips.csv...");
         // Compara os dados da coluna 'station_id' do 'stations.csv' com a do arquivo 'LA_Metro_Bike...'
